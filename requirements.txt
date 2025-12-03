@@ -1,0 +1,4 @@
+# Advent of Code 2023 Dependencies
+
+# Z3 constraint solver - used for Day 24 Part 2
+z3-solver==4.15.4.0

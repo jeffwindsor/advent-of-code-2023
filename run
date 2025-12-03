@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+clear
+
+# If a number argument is provided, run that specific file
+if [[ -n "$1" ]]; then
+  # Format the number as two digits (01, 02, etc.)
+  day=$(printf "%02d" "$1")
+
+  # Find the file starting with that day number
+  script=$(ls ${day}*.py 2>/dev/null | head -n 1)
+
+  if [[ -f "$script" ]]; then
+    echo -e "\033[43m\033[97m  $script  \033[0m"
+    python3 "$script"
+  else
+    echo -e "\033[41m\033[97m No Python script found for day $day \033[0m"
+    exit 1
+  fi
+else
+  # No argument provided, run all Python files
+  for script in [0-9][0-9]*.py; do
+    if [[ -f "$script" ]]; then
+      echo -e "\033[43m\033[97m $script \033[0m"
+      python3 "$script"
+    fi
+  done
+fi
